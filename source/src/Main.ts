@@ -45,6 +45,8 @@ class Main extends egret.DisplayObjectContainer {
                 if (es.Core.Instance) {
                     es.Core.emitter.emit(es.CoreEvents.FrameUpdated, egret.getTimer());
                 }
+
+                es.Input.update();
             }
         })
 
@@ -66,6 +68,8 @@ class Main extends egret.DisplayObjectContainer {
         es.Core.emitter.addObserver(es.CoreEvents.SceneChanged, this.onGCCollect, this);
 
         Graphics.Instance = new Graphics(this.stage);
+        es.KeyboardUtils.init();
+        es.Input.initialize(this.stage);
 
         await this.loadResource()
         es.Core.scene = new MainScene();
