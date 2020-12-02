@@ -7,7 +7,7 @@ class MainScene extends es.Scene {
         player.addComponent(this.loadPlayerAnimator()).play(PlayerState.run + PlayerDirection.bottom);
         player.addComponent(new PlayerController());
 
-        camera.addComponent(new es.FollowCamera(player)).focusOffset = new es.Vector2(320, 568);
+        camera.addComponent(new es.FollowCamera(player)).focusOffset = new es.Vector2(es.Core.Instance.width / 2, es.Core.Instance.height / 2);
 
         let debugGrid = this.createEntity("debugGrid");
         debugGrid.addComponent(new DebugGridComponent());
