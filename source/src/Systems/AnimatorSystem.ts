@@ -7,8 +7,13 @@ class AnimatorSystem extends es.EntityProcessingSystem {
         let spriteAnimator = entity.getComponent<es.SpriteAnimator>(es.SpriteAnimator);
         if (spriteAnimator.enabled){
             // 开始渲染
-            let bitmap = Graphics.Instance.batcher.drawAnimator(spriteAnimator, BatcherOrder.player);
+            let cameraEntity = es.Core.scene.findEntity("camera");
+            let camera = cameraEntity.getComponent<es.Camera>(es.Camera) || 
+                cameraEntity.getComponent<es.FollowCamera>(es.FollowCamera).camera;
+            let bitmap = Graphics.Instance.batcher.drawBitmap(entity.id, BatcherOrder.player);
             bitmap.texture = spriteAnimator.sprite.texture2D;
+            bitmap.x = entity.position.x - camera.position.x;
+            bitmap.y = entity.position.y - camera.position.y;
         }
     }
 }

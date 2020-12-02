@@ -6,8 +6,7 @@
 		"libs/modules/tween/tween.js",
 		"libs/modules/assetsmanager/assetsmanager.js",
 		"libs/modules/promise/promise.js",
-		"libs/framework/framework.js",
-		"libs/ecs_ext/ecs_ext.js"
+		"libs/framework/framework.js"
 	],
 	"game": [
 		"main.js"

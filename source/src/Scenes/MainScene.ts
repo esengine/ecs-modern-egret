@@ -3,12 +3,18 @@ class MainScene extends es.Scene {
         // 给场景安装相机
         let camera = this.createEntity("camera");
 
-        let player = this.createEntity("player");
+        let player = this.createEntity("player")
         player.addComponent(this.loadPlayerAnimator()).play(PlayerState.run + PlayerDirection.bottom);
+        player.addComponent(new PlayerController());
 
-        camera.addComponent(new es.FollowCamera(player));
+        camera.addComponent(new es.FollowCamera(player)).focusOffset = new es.Vector2(320, 568);
+
+        let debugGrid = this.createEntity("debugGrid");
+        debugGrid.addComponent(new DebugGridComponent());
 
         this.addEntityProcessor(new AnimatorSystem());
+        this.addEntityProcessor(new DebugGridSystem());
+        this.addEntityProcessor(new PlayerControllerSystem());
     }
 
     private loadPlayerAnimator(): es.SpriteAnimator {

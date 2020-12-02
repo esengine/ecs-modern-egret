@@ -12,5 +12,6 @@ enum Pattern {
  */
 enum BatcherOrder {
     map,
+    debug,
     player,
 }
