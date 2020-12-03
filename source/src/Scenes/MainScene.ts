@@ -8,12 +8,17 @@ class MainScene extends es.Scene {
         player.addComponent(new PlayerController());
         player.addComponent(new es.BoxCollider(0, 0, Config.pattern, Config.pattern * 2))
 
-        for (let i = 0; i < 50; i ++) {
+        for (let i = 0; i < 15; i ++) {
             let wall = this.createEntity("wall" + i);
             wall.addComponent(new es.BoxCollider(0, 0, Config.pattern, Config.pattern));
             wall.position = new es.Vector2(RandomUtils.randint(-640, 640), RandomUtils.randint(-1136, 1136));
         }
         
+        for (let i = 0; i < 15; i ++) {
+            let wall = this.createEntity("wall" + i);
+            wall.addComponent(new es.CircleCollider(Config.pattern));
+            wall.position = new es.Vector2(RandomUtils.randint(-640, 640), RandomUtils.randint(-1136, 1136));
+        }
 
         camera.addComponent(new es.FollowCamera(player)).focusOffset = new es.Vector2(es.Core.Instance.width / 2, es.Core.Instance.height / 2);
 
@@ -24,6 +29,8 @@ class MainScene extends es.Scene {
         this.addEntityProcessor(new DebugGridSystem());
         this.addEntityProcessor(new PlayerControllerSystem());
         this.addEntityProcessor(new DebugBoxColliderSystem());
+        this.addEntityProcessor(new DebugCircleColliderSystem());
+        this.addEntityProcessor(new DebugPolygonColliderSystem());
     }
 
     private loadPlayerAnimator(): es.SpriteAnimator {
