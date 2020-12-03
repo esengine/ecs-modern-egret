@@ -24,15 +24,22 @@ class PlayerControllerSystem extends es.EntityProcessingSystem {
             if (this.virtualXInput.value > 0) {
                 if (spriteAnimator.currentAnimationName != PlayerState.run + PlayerDirection.right)
                     spriteAnimator.play(PlayerState.run + PlayerDirection.right);
+                playerController.direction = PlayerDirection.right;
             } else if (this.virtualXInput.value < 0) {
                 if (spriteAnimator.currentAnimationName != PlayerState.run + PlayerDirection.left)
                     spriteAnimator.play(PlayerState.run + PlayerDirection.left);
+                playerController.direction = PlayerDirection.left;
             } else if(this.virtualYInput.value > 0) {
                 if (spriteAnimator.currentAnimationName != PlayerState.run + PlayerDirection.bottom)
                     spriteAnimator.play(PlayerState.run + PlayerDirection.bottom);
+                playerController.direction = PlayerDirection.bottom;
             } else if(this.virtualYInput.value < 0) {
                 if (spriteAnimator.currentAnimationName != PlayerState.run + PlayerDirection.up)
                     spriteAnimator.play(PlayerState.run + PlayerDirection.up);
+                playerController.direction = PlayerDirection.up;
+            } else {
+                if (spriteAnimator.currentAnimationName != PlayerState.idle + playerController.direction)
+                    spriteAnimator.play(PlayerState.idle + playerController.direction);
             }
         }
     }

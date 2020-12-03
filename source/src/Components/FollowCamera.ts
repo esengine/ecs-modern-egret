@@ -69,7 +69,7 @@ module es {
             this._worldSpaceDeadZone.width = this.deadzone.width;
             this._worldSpaceDeadZone.height = this.deadzone.height;
 
-            if (this._targetEntity)
+            if (this._targetEntity != null)
                 this.updateFollow();
 
             this.camera.position = Vector2.lerp(this.camera.position, Vector2.add(this.camera.position, this._desiredPositionDelta), this.followLerp);
