@@ -19,8 +19,8 @@ class DebugBoxColliderSystem extends es.EntityProcessingSystem {
                 shape.graphics.drawRect(0, 0, boxCollider.bounds.width, boxCollider.bounds.height);
                 shape.graphics.endFill();
 
-                shape.x = entity.position.x - camera.bounds.x;
-                shape.y = entity.position.y - camera.bounds.y;
+                shape.x = boxCollider.bounds.x - camera.bounds.x;
+                shape.y = boxCollider.bounds.y - camera.bounds.y;
             }
         }
     }

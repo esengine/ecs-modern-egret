@@ -12,7 +12,7 @@ class MainScene extends es.Scene {
         let player = this.createEntity("player")
         player.addComponent(this.loadPlayerAnimator()).play(PlayerState.run + PlayerDirection.bottom);
         player.addComponent(new PlayerController());
-        player.addComponent(new es.BoxCollider(0, 0, Config.pattern, Config.pattern * 2));
+        player.addComponent(new es.BoxCollider(0, Config.pattern, Config.pattern, Config.pattern));
 
         for (let i = 0; i < 150; i ++) {
             let wall = this.createEntity("wall" + i);
