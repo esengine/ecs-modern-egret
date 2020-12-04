@@ -1,4 +1,10 @@
 class MainScene extends es.Scene {
+    private randomPolygon = [
+        [new es.Vector2(0, 0), new es.Vector2(100, 0), new es.Vector2(50, 100)],
+        [new es.Vector2(0, 0), new es.Vector2(100, 0), new es.Vector2(120, 100), new es.Vector2(50, 100)],
+        [new es.Vector2(0, 0), new es.Vector2(100, 0), new es.Vector2(120, 140), new es.Vector2(50, 140), new es.Vector2(20, 100)],
+    ];
+
     public onStart(){
         // 给场景安装相机
         let camera = this.createEntity("camera");
@@ -14,11 +20,16 @@ class MainScene extends es.Scene {
             wall.position = new es.Vector2(RandomUtils.randint(100, 3200), RandomUtils.randint(100, 3200));
         }
 
-        
         for (let i = 0; i < 150; i ++) {
             let wall = this.createEntity("wall" + i);
             wall.addComponent(new es.CircleCollider(Config.pattern));
             wall.position = new es.Vector2(RandomUtils.randint(100, 3200), RandomUtils.randint(100, 3200));
+        }
+
+        for (let i = 0; i < 20; i ++) {
+            let wall = this.createEntity("wall" + i);
+            wall.addComponent(new es.PolygonCollider(ArrayUtils.randomItem(this.randomPolygon)));
+            wall.position = new es.Vector2(RandomUtils.randint(100, 1280), RandomUtils.randint(100, 2200));
         }
 
         camera.addComponent(new es.FollowCamera(player)).focusOffset = new es.Vector2(es.Core.Instance.width / 2, es.Core.Instance.height / 2);
