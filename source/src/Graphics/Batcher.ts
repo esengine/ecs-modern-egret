@@ -128,4 +128,8 @@ class Batcher {
 
         return gridContainer;
     }
+
+    public drawTriangles(verts: es.Vector2[]) {
+        
+    }
 }
