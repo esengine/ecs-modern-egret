@@ -13,6 +13,7 @@ class MainScene extends es.Scene {
         player.addComponent(this.loadPlayerAnimator()).play(PlayerState.run + PlayerDirection.bottom);
         player.addComponent(new PlayerController());
         player.addComponent(new es.BoxCollider(0, Config.pattern, Config.pattern, Config.pattern));
+        player.position = new es.Vector2(500, 500);
 
         for (let i = 0; i < 150; i ++) {
             let wall = this.createEntity("wall" + i);
@@ -23,6 +24,7 @@ class MainScene extends es.Scene {
         for (let i = 0; i < 150; i ++) {
             let wall = this.createEntity("wall" + i);
             wall.addComponent(new es.CircleCollider(Config.pattern));
+            wall.addComponent(new es.ArcadeRigidbody()).setGlue(0);
             wall.position = new es.Vector2(RandomUtils.randint(100, 3200), RandomUtils.randint(100, 3200));
         }
 
@@ -38,7 +40,7 @@ class MainScene extends es.Scene {
         debugGrid.addComponent(new DebugGridComponent());
 
         this.addEntityProcessor(new AnimatorSystem());
-        this.addEntityProcessor(new DebugGridSystem());
+        // this.addEntityProcessor(new DebugGridSystem());
         this.addEntityProcessor(new PlayerControllerSystem());
         this.addEntityProcessor(new DebugBoxColliderSystem());
         this.addEntityProcessor(new DebugCircleColliderSystem());
