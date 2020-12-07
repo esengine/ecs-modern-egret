@@ -14,7 +14,7 @@ class DebugCircleColliderSystem extends es.EntityProcessingSystem {
             let isVisibleForCamera = camera._bounds.intersects(circleCollider.bounds);
             shape.visible = isVisibleForCamera;
 
-            if (isVisibleForCamera) {
+            // if (isVisibleForCamera) {
                 shape.graphics.clear();
                 shape.graphics.lineStyle(2, 0x00ffff, 1);
                 shape.graphics.drawCircle(0, 0, circleCollider.radius);
@@ -22,7 +22,7 @@ class DebugCircleColliderSystem extends es.EntityProcessingSystem {
                 
                 shape.x = entity.position.x - camera.bounds.x;
                 shape.y = entity.position.y - camera.bounds.y;
-            }
+            // }
         }
     }
 }

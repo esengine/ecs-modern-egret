@@ -12,8 +12,8 @@ class AnimatorSystem extends es.EntityProcessingSystem {
                 cameraEntity.getComponent<es.FollowCamera>(es.FollowCamera).camera;
             let bitmap = Graphics.Instance.batcher.drawBitmap(entity.id, BatcherOrder.player);
             bitmap.texture = spriteAnimator.sprite.texture2D;
-            bitmap.x = entity.position.x - camera.position.x;
-            bitmap.y = entity.position.y - camera.position.y;
+            bitmap.x = entity.position.x - camera.position.x - Config.pattern;
+            bitmap.y = entity.position.y - camera.position.y - Config.pattern;
         }
     }
 }

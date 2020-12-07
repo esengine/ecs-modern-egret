@@ -129,7 +129,30 @@ class Batcher {
         return gridContainer;
     }
 
-    public drawTriangles(verts: es.Vector2[]) {
-        
+    public drawTriangles(id: number, batchOrder: BatcherOrder, verts: es.Vector2[], indices: number[]) {
+        let shape: egret.Shape;
+        if (!this.debugBatcherRelation.has(id)) {
+            shape = new egret.Shape();
+            shape.graphics.lineStyle(2, 0x00ff00);
+            for (let indice of indices){
+                if (indice == undefined) break;
+                shape.graphics.lineTo(verts[indice].x, verts[indice].y);
+                
+            }
+            shape.graphics.endFill();
+            this.debugBatcherRelation.set(id, shape);
+            this.containerRelation.get(batchOrder).addChild(shape);
+        } else {
+            shape = this.debugBatcherRelation.get(id) as egret.Shape;
+            shape.graphics.clear();
+            shape.graphics.lineStyle(2, 0x00ff00);
+            for (let indice of indices){
+                if (indice == undefined) break;
+                shape.graphics.lineTo(verts[indice].x, verts[indice].y);
+            }
+            shape.graphics.endFill();
+        }
+
+        return shape;
     }
 }
